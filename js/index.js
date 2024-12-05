@@ -70,7 +70,7 @@ console.clear();
 // encapsulation; inheritance; Poly-morph-ism; abstraction;
 // constructer function, prototype chain
 //* Primitive Data
-//* var vs. let vs. const 
+//* var vs. let vs. const
 
 // number, string, boolean, undefined,
 // var num = 4;
@@ -136,7 +136,6 @@ console.clear();
 // console.log(true + false); // true && false
 // console.log(100 - '12' + '12'); //
 
-
 // 0, '', undefined, null, ' ', false, NaN
 // var arr = [1, 'test', true, 0, {}, undefined, null];
 // for (let i = 0; i < arr.length; i++) {
@@ -165,7 +164,6 @@ console.clear();
 // const   block      n           n
 // function ?         ?           n
 
-
 // console.log(v); // undefined
 // const v = [90];
 // v[0] = 4567;
@@ -193,4 +191,89 @@ console.clear();
 // }
 
 // * class in js (ES6)
+// oop
 
+// class Person {
+//   #name = 'TT';
+//   age = 56;
+
+//   get name() {
+//     console.log('getting #name');
+//     return this.#name;
+//   }
+//   set name(newname) {
+
+//     console.log('setting #name'); // rerender page;
+//     this.#name = newname;
+//   }
+
+// constructor(name, age) {
+//   this.#name = name;
+//   this.age = age;
+// }
+
+//   constructor() {}
+
+//   run(param) {
+//     console.log(this.#name + ' is running');
+//     console.log(this.#name, 'is running');
+//     console.log(`${this.#name} is running`);
+//   }
+
+//   static walk() {
+//     console.log('walking');
+//   }
+// } // "" '' ``
+
+function Person(name, age) {
+	let _name = name;
+	let _age = age;
+
+  Object.defineProperty(this, 'name', {
+    get: function() {
+      console.log('getting #name');
+      return _name;
+    }, 
+    set: function(newname) {
+      _name = newname
+    }
+  })
+}
+
+function foo() {}
+
+Person.prototype.run = function () {
+	console.log(`${this.name} is running`);
+};
+
+Person.walk = function () {
+	console.log("walking");
+};
+
+const p = new Person("Jojo", 20);
+p.name = 'David';
+console.log(p.name);
+p.run();
+
+Person.walk();
+// Promise.all()
+
+// const e = new Person("Jojo", 20);
+// console.log(e);
+
+// * mutable vs. immutable
+// let obj = {
+//   name: 'TT',
+//   age: 234
+// }
+
+// obj = {
+//   ...obj,
+//   name: 'DD'
+// }
+
+// obj.name = 'DD';
+
+// Array.prototype.myForEach = function() {
+//   console.log('this is myForEach!');
+// }
