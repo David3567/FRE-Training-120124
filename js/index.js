@@ -479,15 +479,15 @@ console.clear();
 
 // const a = 1;
 // const b = 3;
-const [a, b] = [1, 3];
+// const [a, b] = [1, 3];
 
-const obj = {
-  subobj: {
-    name: 'YY'
-  }, 
-  age: 33
-}
-const {subobj: {name: newName}, age} = obj;
+// const obj = {
+//   subobj: {
+//     name: 'YY'
+//   }, 
+//   age: 33
+// }
+// const {subobj: {name: newName}, age} = obj;
 
 // console.log(newName, age);
 
