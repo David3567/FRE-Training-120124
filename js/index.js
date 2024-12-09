@@ -494,3 +494,14 @@ console.clear();
 // console.log(module);
 
 // module.exports = obj;
+
+// * iife
+// * closure
+// * currying
+// *
+// * this
+// * call, apply, bind
+// *
+// * arrow function
+// *
+// * event loop
