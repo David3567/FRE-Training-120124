@@ -1,4 +1,3 @@
-console.clear();
 /**
  * @class
  * what is javascript, ECMAScript
@@ -259,11 +258,12 @@ console.clear();
 
 // console.log(new Person('we', 12));
 
-// function Employee(name, age, company) {
-//   // super(name, age);
-//   Person.call(this, name, age);
-//   this.company = company;
-// }
+function Employee(name, age, company) {
+	// super(name, age);
+	// Person.call(this, name, age);
+	Person.apply(this, [name, age]);
+	this.company = company;
+}
 
 // const e = new Employee("Jojo", 20, "Jump");
 
@@ -401,11 +401,11 @@ console.clear();
 //     console.log('for loop');
 //     return acc - cur;
 //   })
-// ); // 
+// ); //
 
 //* obj ===> arr: entries, keys, values
 // const obj = {
-//   name: 'tt', 
+//   name: 'tt',
 //   age: 34
 // }
 // console.log(Object.entries(obj));
@@ -484,7 +484,7 @@ console.clear();
 // const obj = {
 //   subobj: {
 //     name: 'YY'
-//   }, 
+//   },
 //   age: 33
 // }
 // const {subobj: {name: newName}, age} = obj;
@@ -495,13 +495,171 @@ console.clear();
 
 // module.exports = obj;
 
-// * iife
-// * closure
-// * currying
-// *
-// * this
+// * this --> obj, function
+// const obj = {
+// 	name: "Dio",
+// 	age: 200,
+
+// 	foo: function () {
+// 		console.log("foo: ", this); // <------
+
+		// const bar = (function () {
+		//   console.log('bar: ', this);
+		// }).bind(this); // <------------
+
+// 		(function () {
+// 			console.log("bar: ", this);
+// 		}).call(this);
+
+//     (function () {
+// 			console.log("bar: ", this);
+// 		}).apply(this);
+
+// 		const bar = () => {
+// 			console.log("bar: ", this); // <------
+// 		};
+// 		bar();
+// 	},
+// };
+// obj.foo();
+
+// class Person {
+//   name;
+
+//   foo() {
+//     console.log(this.name);
+//   }
+// }
 // * call, apply, bind
-// *
+// const obj = {
+//     pi: 3.14159265,
+//     getPi() {
+//         return this.pi;
+//     }
+// }
+// function printPi(num1, num2) { // 100 args
+//   console.log('from print: ', this.pi, num1, num2);
+// }
+// printPi(12, 45);
+// printPi.call(obj, 12, 45); // 1 + 100 args = 101
+// printPi.apply(obj, [12, 45]); // 1 + 1 args = 2 + [100]
+
+// const printPiBindObj = printPi.bind(obj);
+// printPiBindObj(12, 24);
+
+// console.log('this: ', this);
+
+// function bar() {
+//   console.log('global: ', this);
+// }
+// bar();
+
 // * arrow function
-// *
+// const bar = () => {};
+
+// * iife
+// (function () {
+//   console.log('foo');
+// })(); // ())
+
+// (() => {
+//   console.log('bar');
+// })();
+
+// * closure
+// const sum = (a, b) => a + b;
+// const cb = (a, b, c, d) => a * b + c - d;
+
+// const fn = limitedFunction(3, sum); // n = 3
+
+// fn(3, 4) // 7 // n = 2
+// fn(3, 9) // 12 // n = 1
+// fn(36, 4) // 40 // n = 0
+// fn(6, 4) // 10
+// fn(3, 4) // 7
+// fn(3, 4) // 7
+// fn(3, 4) // over limited!
+// fn(3, 4) // over limited!
+
+// const fncopy = limitedFunction(7, cb); // n = 7
+// fncopy(3, 4, 5, 6); // 11 // 6
+// fncopy(3, 4, 5, 6); // 11
+// fncopy(3, 4, 5, 6); // 11
+// fncopy(3, 4, 5, 6); // 11
+// fncopy(3, 4, 5, 6); // 11
+// fncopy(3, 4, 5, 6); // 11
+// fncopy(3, 4, 5, 6); // 11
+// fncopy(3, 4, 5, 6); // 11
+
+// function limitedFunction(num, callback) {
+//   let n = num;
+
+//   return function(...args) { // rest parameter
+//     if (n > 0) {
+//       console.log(callback(...args)); // spread operators
+//       n--;
+//     } else {
+//       console.log('over limited!');
+//     }
+//   }
+// }
+
+// * high order function;
+
+// * currying
+// const callback1 = (a) => a + 2; // 7
+// const callback2 = (b) => b * 2; // 14
+// const callback3 = (c) => c + 2; // 12
+
+// console.log( runAll(callback1, callback2, callback3)(5) ); // 12
+
+// function runAll(...callbacks) {
+
+//   return function(init) {
+//     // let num = init;
+
+//     // while (callbacks.length) {
+//     //   const fn = callbacks.shift(); // push: [1, 2, 3] <---- pop: [1, 2] ----> shift: <---- [2, 3] unshift: ---> [1, 2, 3]
+//     //   num = fn(num);
+//     // }
+
+//     // return num;
+//     return callbacks.reduce((acc, fn) => fn(acc), init);
+//   }
+// }
+
+// function foo(n) {
+//   return function(m) {
+//     return n + m;
+//   }
+// }
+// const bar = foo(4);
+// console.log(bar(5)); // 9
+
 // * event loop
+// console.log(module.exports {})
+
+
+for (var i = 0; i < 5; i++) {
+  (function(v) {
+    setTimeout(() => console.log(v), (9 - v) * 1000);
+  })(i);
+} // 0, 1, 2, 3, 4
+
+
+// call stack: [() => console.log(v)] v = 0
+
+// async api: () => console.log(v) 5s v = 0
+// () => console.log(i) 4s v =  1
+// () => console.log(i) 3s v = 2
+//() => console.log(i) 2
+//() => console.log(i) 1 
+
+
+// task queue: [
+//  () => console.log(v) 0, v = 0
+// () => console.log(i) 1s
+//() => console.log(i)
+//() => console.log(i)
+//() => console.log(i)
+//]
