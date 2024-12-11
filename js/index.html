@@ -7,8 +7,32 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<link rel="shortcut icon" href="#" />
-		<script src="index.js"></script>
+		<!-- <script src="index.js"></script> -->
 		<title>Document</title>
 	</head>
-	<body></body>
+	<body>
+		<button onclick="addli()">add li</button>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+
+		<script>
+			const liHtmlCollection = document.getElementsByTagName("li"); // alive
+			const liNodeList = document.querySelectorAll("li");
+			const ulHtmlCollection = document.getElementsByTagName("ul")[0];
+
+			console.log(document.getElementsByTagName("li"));
+			console.log(document.querySelectorAll("li"));
+
+			function addli() {
+				const newli = document.createElement("li");
+				ulHtmlCollection.appendChild(newli);
+
+				console.log("htmlcollection: ", liHtmlCollection.length);
+				console.log("linodelist: ", liNodeList.length);
+			}
+		</script>
+	</body>
 </html>
