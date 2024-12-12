@@ -18,9 +18,9 @@ export const API = (() => {
 		}).then((response) => response.json());
 
 	const deleteTodo = (id) =>
-		fetch([baseUrl, todoUrl, id].join("/")).then((response) =>
-			response.json()
-		);
+		fetch([baseUrl, todoUrl, id].join("/"), {
+      method: 'DELETE',
+    });
 
 	return {
 		getTodos,
