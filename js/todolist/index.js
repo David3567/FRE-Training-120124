@@ -15,7 +15,7 @@ const API = (() => {
 // * ~~~~~~~~~~~~~~~~~~~ View ~~~~~~~~~~~~~~~~~~~
 const View = (() => {
 	const domstr = {
-		inputBox: ".todolist-input",
+		inputBox: "todolist-input",
 		listContainer: "todolist-container",
 	};
 
