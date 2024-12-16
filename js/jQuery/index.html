@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+	</head>
+	<body>
+		<button class="continue">Button</button>
+		<hr />
+		<button id="button-container">container</button>
+		<div id="banner-message">hello</div>
+
+		<div id="weather-temp"></div>
+
+		<script>
+			// css, queryselector ---> button.continue
+
+			const $ = function (selector) {
+				const ele = document.querySelector(selector);
+
+				const html = function (text) {
+					ele.innerHTML = text;
+				};
+
+				const on = function (eventtype, cb) {
+					ele.addEventListener(eventtype, cb);
+				};
+
+				const hide = function () {
+					ele.style.display = "none";
+				};
+
+				const show = function () {
+					ele.style.removeProperty("display");
+				};
+
+				return { html, hide, show, on };
+			};
+			$("button.continue").html("Next Step..."); // 1.
+
+			const hiddenBox = $("#banner-message"); // 2.
+			let isshown = true;
+			$("#button-container").on("click", function (event) {
+				isshown ? hiddenBox.hide() : hiddenBox.show();
+				isshown = !isshown;
+			});
+
+			$.ajax = function (options) {
+				// console.log(112);
+
+				let baseUrl = `${options.url}?`; //    /api/getWeather?
+				if (options.data) {
+					Object.entries(options.data).forEach(([key, val]) => {
+						baseUrl += `${key}=${val}&`; //  /api/getWeather?zipcode=97201&name=Jojo&
+					});
+				}
+
+				fetch(options.url, {
+					method: options.method || "GET",
+					body: options.body ? JSON.stringify(options.body) : null,
+					headers: {
+						"Content-type": "application/json; charset=UTF-8",
+					},
+				})
+					.then((res) => res.json())
+					.then((result) => {
+						options.success(result);
+					});
+			};
+
+			// $.ajax(options);
+			$.ajax({
+				url: "https://jsonplaceholder.typicode.com/todos/1",
+				data: {
+					zipcode: 97201,
+					name: "Jojo",
+				},
+				success: function (result) {
+					$("#weather-temp").html(
+						"<strong>" + JSON.stringify(result) + "</strong> degrees"
+					);
+				},
+			});
+		</script>
+	</body>
+</html>

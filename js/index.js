@@ -372,9 +372,9 @@ function Employee(name, age, company) {
 // 	return res;
 // };
 // console.log(
-// 	arr.myFilter(function (ele, i, arrself) {
-// 		return ele < 12;
-// 	})
+	// [1, 2].filter((ele, i, arrself) => {
+	// 	return ele < 12;
+	// })
 // );
 
 //* reduce
@@ -963,3 +963,11 @@ myFetch("https://jsonplaceholder.typicode.com/posts", {
 //   .then((response) => response.json())
 //   .then((json) => console.log(json));
 
+// const cb = (val, num, obj, str) => {
+//   return function(ele, i, arr) {
+//     return ele + val
+//   }
+// }
+
+
+// [1, 2, 3].map(cb(7, 4, {}, 'ssersf'))
