@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
         country: [],
       }),
     });
+    console.log('this is on init~~~~~~~~');
   }
 
   onSubmit() {

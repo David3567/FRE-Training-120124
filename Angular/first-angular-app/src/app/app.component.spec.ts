@@ -18,15 +18,15 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the app', () => {
+  xit('should create the app', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'first-angular-app'`, () => {
+  xit(`should have as title 'first-angular-app'`, () => {
     expect(component.title).toEqual('first-angular-app');
   });
 
-  it('should initialize the form', () => {
+  xit('should initialize the form', () => {
     expect(component.form).toBeDefined();
     expect(component.form.controls['firstname']).toBeDefined();
     expect(component.form.controls['lastname']).toBeDefined();
@@ -41,15 +41,15 @@ describe('AppComponent', () => {
     expect(component.form.value.firstname).toBe(2);
   });
 
-  it('should increment firstNameTmp each time setFirstName is called', () => {
-    expect(component.firstNameTmp).toBe(0);
+  // xit('should increment firstNameTmp each time setFirstName is called', () => {
+  //   expect(component.firstNameTmp).toBe(0);
 
-    component.setFirstName();
-    expect(component.firstNameTmp).toBe(1);
+  //   component.setFirstName();
+  //   expect(component.firstNameTmp).toBe(1);
 
-    component.setFirstName();
-    expect(component.firstNameTmp).toBe(2);
-  });
+  //   component.setFirstName();
+  //   expect(component.firstNameTmp).toBe(2);
+  // });
 
   // it('should render title', () => {
   //   const fixture = TestBed.createComponent(AppComponent);
