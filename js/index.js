@@ -697,25 +697,25 @@ function Employee(name, age, company) {
 // getUser(2, print);
 // getUser(7, print);
 
-function getUser(id) {
-	const baseUrl = "https://jsonplaceholder.typicode.com";
-	const userUrl = "users";
+// function getUser(id) {
+// 	const baseUrl = "https://jsonplaceholder.typicode.com";
+// 	const userUrl = "users";
 
-	return new Promise((resolve, reject) => {
-		const xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				// Typical action to be performed when the document is ready:
-				resolve(JSON.parse(xhttp.responseText));
-			}
-		};
-		xhttp.open("GET", [baseUrl, userUrl, id].join("/"), true); //``
-		xhttp.send();
-	});
-}
-function print(ele) {
-	console.log(ele);
-}
+// 	return new Promise((resolve, reject) => {
+// 		const xhttp = new XMLHttpRequest();
+// 		xhttp.onreadystatechange = function () {
+// 			if (this.readyState == 4 && this.status == 200) {
+// 				// Typical action to be performed when the document is ready:
+// 				resolve(JSON.parse(xhttp.responseText));
+// 			}
+// 		};
+// 		xhttp.open("GET", [baseUrl, userUrl, id].join("/"), true); //``
+// 		xhttp.send();
+// 	});
+// }
+// function print(ele) {
+// 	console.log(ele);
+// }
 // getUser(6)
 // 	.then((ele) => {
 // 		print(ele);
@@ -915,49 +915,49 @@ function print(ele) {
 
 // * MyFetch
 
-function myFetch(url, options) {
-	let method = options && options.method ? options.method : "GET";
+// function myFetch(url, options) {
+// 	let method = options && options.method ? options.method : "GET";
 
-	return new Promise((resolve, reject) => {
-		const xhttp = new XMLHttpRequest();
-		xhttp.open(method, url, true); //``
+// 	return new Promise((resolve, reject) => {
+// 		const xhttp = new XMLHttpRequest();
+// 		xhttp.open(method, url, true); //``
 
-		if (options && options.headers) {
-			Object.entries(options.headers).forEach(([key, val]) => {
-				xhttp.setRequestHeader(key, val);
-			});
-		}
+// 		if (options && options.headers) {
+// 			Object.entries(options.headers).forEach(([key, val]) => {
+// 				xhttp.setRequestHeader(key, val);
+// 			});
+// 		}
 
-		xhttp.onreadystatechange = function () {
-			if (
-				this.readyState == 4 &&
-				this.status >= 200 &&
-				this.status < 300
-			) {
-				resolve({
-					json: function () {
-						return JSON.parse(xhttp.responseText);
-					},
-				});
-			}
-		};
-		options && options.body ? xhttp.send(options.body) : xhttp.send();
-	});
-}
+// 		xhttp.onreadystatechange = function () {
+// 			if (
+// 				this.readyState == 4 &&
+// 				this.status >= 200 &&
+// 				this.status < 300
+// 			) {
+// 				resolve({
+// 					json: function () {
+// 						return JSON.parse(xhttp.responseText);
+// 					},
+// 				});
+// 			}
+// 		};
+// 		options && options.body ? xhttp.send(options.body) : xhttp.send();
+// 	});
+// }
 
-myFetch("https://jsonplaceholder.typicode.com/posts", {
-	method: "POST",
-	body: JSON.stringify({
-		title: "foo",
-		body: "bar",
-		userId: 1,
-	}),
-	headers: {
-		"Content-type": "application/json; charset=UTF-8",
-	},
-})
-	.then((response) => response.json())
-	.then((json) => console.log(json));
+// myFetch("https://jsonplaceholder.typicode.com/posts", {
+// 	method: "POST",
+// 	body: JSON.stringify({
+// 		title: "foo",
+// 		body: "bar",
+// 		userId: 1,
+// 	}),
+// 	headers: {
+// 		"Content-type": "application/json; charset=UTF-8",
+// 	},
+// })
+// 	.then((response) => response.json())
+// 	.then((json) => console.log(json));
 
 // myFetch('https://jsonplaceholder.typicode.com/posts/3')
 //   .then((response) => response.json())
@@ -969,5 +969,23 @@ myFetch("https://jsonplaceholder.typicode.com/posts", {
 //   }
 // }
 
-
 // [1, 2, 3].map(cb(7, 4, {}, 'ssersf'))
+
+function logMethod(target, key, descriptor) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function (...args) {
+    console.log(`Calling ${key} with`, args);
+    return originalMethod.apply(this, args);
+  };
+  return descriptor;
+}
+
+class Example {
+  @logMethod
+  greet(name) {
+    return `Hello, ${name}`;
+  }
+}
+
+const example = new Example();
+console.log(example.greet('Alice'));
