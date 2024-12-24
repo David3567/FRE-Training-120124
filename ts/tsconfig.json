@@ -5,7 +5,10 @@
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"outFile": "./dist/index.js",
-		"sourceMap": true
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"include": ["src/**/*"],
 	"exclude": ["**/*.spec.ts"]

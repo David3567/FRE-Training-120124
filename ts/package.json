@@ -1,6 +1,7 @@
 {
 	"scripts": {
-		"start": "nodemon --watch src --exec ts-node src/app.ts"
+		"start": "nodemon --watch src --exec ts-node src/app.ts",
+		"build": "tsc"
 	},
 	"dependencies": {
 		"typescript": "^5.7.2"
