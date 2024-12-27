@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    <p>{{ title }}</p>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <h3>Fahrenheit to Celsius</h3>
+    </div>
+    <div class="row">
+      <p>
+        Fahrenheit : <input type="text" [(ngModel)]="Fahrenheit" /> Celsius :
+        {{ Fahrenheit | tempConverter : "C" }}
+      </p>
+    </div>
+
+    <div class="row">
+      <h3>Celsius to Fahrenheit</h3>
+    </div>
+    <div class="row">
+      <p>
+        celsius : <input type="text" [(ngModel)]="celcius" /> Fahrenheit :
+        {{ 35 | currency : "CAD" : "symbol-narrow" }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let item of obj | keyvalue : track">
+  {{ item.key }} - {{ item.value }}
+</div>
+
+<div>{{ dateMark | date }}</div>
