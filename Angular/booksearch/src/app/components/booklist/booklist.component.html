@@ -1,0 +1,7 @@
+<p>booklist works!</p>
+<ul>
+  <li *ngFor="let book of books">
+    <img [src]="book.bookPic" alt="" />
+    <h5>{{ book.bookName }}</h5>
+  </li>
+</ul>
