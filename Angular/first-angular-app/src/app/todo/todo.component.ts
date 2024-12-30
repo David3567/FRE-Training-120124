@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { Todo } from '../services/todo.interfaces';
 
@@ -9,7 +9,7 @@ import { Todo } from '../services/todo.interfaces';
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css',
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
   // interplation
   public name: string = 'Angular';
   isdisabled = true;
@@ -24,9 +24,15 @@ export class TodoComponent {
     //   this.todos = todos;
     // })
     // fetch(url).then(data => data.json()).then(data => this.data = data);
-    this.todoService.gettodo().subscribe((todos) => {
-      // this.todos = todos;
-      console.log(todos);
+    // this.todoService.gettodo().subscribe((todos) => {
+    //   // this.todos = todos;
+    //   console.log(todos);
+    // });
+  }
+
+  ngOnInit(): void {
+    this.todoService.subject$.subscribe((val) => {
+      console.log('todo component: ', val);
     });
   }
 

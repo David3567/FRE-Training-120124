@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Todo } from './todo.interfaces';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -10,6 +10,8 @@ export class TodoService {
   todoPath = 'todos';
   userPath = 'users';
   // moviesUrl = 'https://api.themoviedb.org/3/discover';
+
+  subject$ = new Subject();
 
   // private http = inject(HttpClient);
   constructor(private http: HttpClient) {}
