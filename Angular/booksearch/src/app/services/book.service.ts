@@ -9,6 +9,8 @@ import { map, Subject, tap } from 'rxjs';
 export class BookService {
   baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
   bookSubject$ = new Subject<ExpectBook[]>();
+  wishList: string[] = [];
+  wishListSubject$ = new Subject<string[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +31,11 @@ export class BookService {
         this.bookSubject$.next(val);
       })
     );
+  }
+
+  addToWishList(book: ExpectBook) {
+    this.wishList = [book.bookName, ...this.wishList];
+    this.wishListSubject$.next(this.wishList);
   }
 }
 

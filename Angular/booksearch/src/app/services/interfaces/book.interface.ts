@@ -78,7 +78,7 @@ export interface SearchInfo {
   textSnippet: string;
 }
 export interface ExpectBook {
-  bookName?: string;
+  bookName: string;
   bookPic?: string;
   publisher?: string;
   publishDate?: string;

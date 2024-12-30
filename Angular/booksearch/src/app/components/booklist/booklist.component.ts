@@ -27,4 +27,8 @@ export class BooklistComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.booksup.unsubscribe();
   }
+
+  addToWishList(book: ExpectBook) {
+    this.bookService.addToWishList(book);
+  }
 }
