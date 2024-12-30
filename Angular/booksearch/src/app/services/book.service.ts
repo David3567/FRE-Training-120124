@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BookRes, ExpectBook, ItemsEntity } from './interfaces/book.interface';
-import { map, Subject, tap } from 'rxjs';
+import { catchError, map, of, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +29,9 @@ export class BookService {
       }),
       tap((val: ExpectBook[]) => {
         this.bookSubject$.next(val);
+      }),
+      catchError((err) => {
+        return of({ bookName: '' });
       })
     );
   }
