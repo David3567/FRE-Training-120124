@@ -16,6 +16,7 @@ export class WishListComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
     this.bookService.wishListSubject$.subscribe((wishList) => {
       this.wishList = wishList;
     });
