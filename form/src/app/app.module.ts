@@ -16,6 +16,8 @@ import { ReactiveComponent } from './reactive/reactive.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
