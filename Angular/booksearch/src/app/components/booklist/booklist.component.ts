@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { ExpectBook } from '../../services/interfaces/book.interface';
 
 @Component({
@@ -17,12 +17,12 @@ export class BooklistComponent implements OnInit, OnDestroy {
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.booksup = this.bookService.bookSubject$.subscribe(
-      (val: ExpectBook[]) => {
+    this.booksup = this.bookService.bookSubject$
+      .pipe(take(5))
+      .subscribe((val: ExpectBook[]) => {
         console.log('booklist: ', val);
         this.books = val;
-      }
-    );
+      });
   }
   ngOnDestroy(): void {
     this.booksup.unsubscribe();
