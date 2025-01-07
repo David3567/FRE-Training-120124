@@ -19,22 +19,21 @@ export class PipesComponent implements OnInit {
   // arr = [{a: 1}, {b: 2}]
   subscription!: Subscription;
   todos: any;
-
   todos$ !: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     
-    // this.subscription = this.getTodos().subscribe(data => {
-    //   this.todos = data;
-    // })
-    this.todos$ = this.getTodos();
+    this.subscription = this.getTodos().subscribe(data => {
+      this.todos = data;
+    })
+    // this.todos$ = this.getTodos();
   }
 
-  // ngOnDestroy(): void {
-  //   this.subscription.unsubscribe();
-  // }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 
   sorting(a: KeyValue<string,string>, b: KeyValue<string,string>): number {

@@ -8,13 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveComponent } from './reactive/reactive.component';
 import { ValidatorsComponent } from './validators/validators.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SelectallComponent } from './selectall/selectall.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateDrivenComponent,
     ReactiveComponent,
-    ValidatorsComponent
+    ValidatorsComponent,
+    SelectallComponent
   ],
   imports: [
     BrowserModule,
