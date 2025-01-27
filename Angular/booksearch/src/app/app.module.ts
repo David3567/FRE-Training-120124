@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes, Route } from '@angular/router';
 
@@ -19,6 +19,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HomeComponent } from './components/home/home.component';
 import { WishListPageComponent } from './components/wish-list-page/wish-list-page.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BookService } from './services/book.service';
+
+export const BaseUrl = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [
@@ -31,7 +34,17 @@ import { AppRoutingModule } from './app-routing.module';
     WishListPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, SharedModule],
-  providers: [provideAnimationsAsync(), provideHttpClient(withFetch())],
+  providers: [
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch()),
+    // BookService,
+    { provide: BookService, useClass: BookService },
+    {
+      provide: BaseUrl,
+      useValue: 'https://www.googleapis.com/books/v1/volumes?q=',
+    },
+    // { provide: 'hello', useFactory },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

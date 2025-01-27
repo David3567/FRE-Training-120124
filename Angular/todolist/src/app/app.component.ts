@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { BookService } from './services/book.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.scss',
-  providers: [BookService],
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'booksearch';
+  title = 'todolist';
 }

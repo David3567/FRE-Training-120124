@@ -1,20 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BookRes, ExpectBook, ItemsEntity } from './interfaces/book.interface';
 import { BehaviorSubject, catchError, map, of, Subject, tap } from 'rxjs';
+import { BaseUrl } from '../app.module';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class BookService {
-  private baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+  // private baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
   bookSubject$ = new BehaviorSubject<ExpectBook[]>([]);
   // private wishList: string[] = [];
 
   private wishlist$ = new BehaviorSubject<string[]>([]);
   wishListSubject$ = this.wishlist$.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(BaseUrl) private baseUrl: string
+  ) {}
 
   getBooks(name: string) {
     return this.http.get<BookRes>(this.baseUrl + name).pipe(
